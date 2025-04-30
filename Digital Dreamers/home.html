@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Property Nexus Finder</title>
+  <link rel="stylesheet" href="home.css" />
+  <style>
+      body {
+      font-family: Arial, sans-serif;
+      margin: auto;
+      max-width: 800px;
+      padding: 20px;
+      background-color: #f3f6fd;
+    }
+
+    h2 {
+      color: #1a4aa2;
+    }
+
+    .tabs {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      background: #e0e7ff;
+      border: 1px solid #c3dafe;
+      border-bottom: none;
+    }
+
+    .tab.active {
+      background: white;
+      font-weight: bold;
+    }
+
+    .form-section {
+      border: 1px solid #c3dafe;
+      padding: 20px;
+      background-color: white;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Property Nexus Finder</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1>Unified Property Records Search</h1>
+      <p>
+        Search and verify property records across multiple government databases through a single interface.
+        Get comprehensive information about encumbrances, ownership, and legal status.
+      </p>
+    </section>
+
+    <section class="databases">
+      <div class="db-box"><img src="https://img.icons8.com/ios-filled/50/document.png"/><h3>DORIS</h3><p>Urban Property Records</p></div>
+      <div class="db-box"><img src="https://img.icons8.com/ios-filled/50/home-page.png"/><h3>DLR</h3><p>Rural Land Records</p></div>
+      <div class="db-box"><img src="https://img.icons8.com/ios-filled/50/clock.png"/><h3>CERSAI</h3><p>Security Interest Registry</p></div>
+      <div class="db-box"><img src="https://img.icons8.com/ios-filled/50/gift.png"/><h3>MCA21</h3><p>Corporate Asset Registry</p></div>
+    </section>
+
+    <!--<section class="search-section">
+      <h2>Property Search</h2>
+      <p>Search for property records across multiple government databases</p>
+      <form id="searchForm">
+        <select required><option>Select state</option></select>
+        <select required><option>Select district</option></select>
+        <input type="text" placeholder="Enter city name" required />
+        <input type="text" placeholder="Enter ward or area" />
+        <input type="text" placeholder="Enter street name" />
+        <input type="text" placeholder="E.g., Municipal property ID" />
+        <button type="submit">Search Properties</button>
+      </form>
+    </section>-->
+    <h2>Property Search</h2>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('urban')">Urban Properties</div>
+  <div class="tab" onclick="showTab('rural')">Rural Properties</div>
+  <div class="tab" onclick="showTab('advanced')">Advanced Search</div>
+</div>
+
+<div class="form-section" id="urban">
+  <form id="urbanForm">
+    <label>State:</label>
+    <select name="urbanState" onchange="populateDistricts(this.value, 'urbanDistrict')">
+      <option value="">Select state</option>
+      <option value="maharashtra">Maharashtra</option>
+      <option value="karnataka">Karnataka</option>
+      <option value="tamilnadu">Tamil Nadu</option>
+      <option value="delhi">Delhi</option>
+    </select>
+
+    <label>District:</label>
+    <select id="urbanDistrict">
+      <option value="">Select district</option>
+    </select>
+
+    <label>City/Municipality:</label>
+    <input type="text" placeholder="Enter city name" />
+
+    <label>Ward/Zone/Area:</label>
+    <input type="text" placeholder="Enter ward or area" />
+
+    <label>Street/Road:</label>
+    <input type="text" placeholder="Enter street name" />
+
+    <label>Property ID (if known):</label>
+    <input type="text" placeholder="E.g., Municipal property ID" />
+
+    <button type="submit"><a href="psearch.html">search property</a></button>
+  </form>
+</div>
+
+<div class="form-section" id="rural" style="display: none;">
+  <form id="ruralForm">
+    <label>State:</label>
+    <select name="ruralState" onchange="populateDistricts(this.value, 'ruralDistrict')">
+      <option value="">Select state</option>
+      <option value="maharashtra">Maharashtra</option>
+      <option value="karnataka">Karnataka</option>
+      <option value="tamilnadu">Tamil Nadu</option>
+      <option value="delhi">Delhi</option>
+    </select>
+
+    <label>District:</label>
+    <select id="ruralDistrict">
+      <option value="">Select district</option>
+    </select>
+
+    <label>Tehsil/Taluka/Block:</label>
+    <input type="text" placeholder="Enter tehsil/taluka" />
+
+    <label>Village/Gram Panchayat:</label>
+    <input type="text" placeholder="Enter village name" />
+
+    <label>Survey No.:</label>
+    <input type="text" placeholder="E.g., 123/4A" />
+
+    <label>Khasra No./Plot No.:</label>
+    <input type="text" placeholder="E.g., 456" />
+
+    <button type="submit">Search Properties</button>
+  </form>
+</div>
+
+<div class="form-section" id="advanced" style="display: none;">
+  <form id="advancedForm">
+    <label>State:</label>
+    <select name="advancedState" onchange="populateDistricts(this.value, 'advancedDistrict')">
+      <option value="">Select state</option>
+      <option value="maharashtra">Maharashtra</option>
+      <option value="karnataka">Karnataka</option>
+      <option value="tamilnadu">Tamil Nadu</option>
+      <option value="delhi">Delhi</option>
+    </select>
+
+    <label>District:</label>
+    <select id="advancedDistrict">
+      <option value="">Select district</option>
+    </select>
+
+    <label>Property Type:</label>
+    <select>
+      <option value="">Select property type</option>
+      <option value="residential">Residential</option>
+      <option value="commercial">Commercial</option>
+      <option value="industrial">Industrial</option>
+      <option value="agricultural">Agricultural</option>
+    </select>
+
+    <label>Owner/Company Name:</label>
+    <input type="text" placeholder="Enter name of owner or company" />
+
+    <label>Document/Registration Number:</label>
+    <input type="text" placeholder="E.g., Registration or document number" />
+
+    <label>Date From:</label>
+    <input type="date" />
+
+    <label>Date To:</label>
+    <input type="date" />
+
+    <button type="submit"><a href="psearch.html">property search</a></button>
+  </form>
+</div>
+
+<div id="result"></div>
+
+  </main>
+
+  <footer>
+    <p>Property Nexus Finder - A Unified Property Records Search System</p>
+    <p>&copy; 2025 Government of India. All Rights Reserved.</p>
+  </footer>
+
+  <script src="home.js">
+  function showTab(tabId) {
+    document.querySelectorAll('.form-section').forEach(div => div.style.display = 'none');
+    document.getElementById(tabId).style.display = 'block';
+
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelector(.tab[onclick="showTab('${tabId}')"]).classList.add('active');
+  }
+
+  // Simulated districts by state
+  const districtData = {
+    maharashtra: ["Mumbai", "Pune", "Nagpur"],
+    karnataka: ["Bengaluru", "Mysuru", "Hubballi"],
+    tamilnadu: ["Chennai", "Coimbatore", "Madurai"],
+    delhi: ["New Delhi", "South Delhi", "North Delhi"]
+  };
+
+  function populateDistricts(state, districtElementId) {
+    const districtSelect = document.getElementById(districtElementId);
+    districtSelect.innerHTML = '<option value="">Select district</option>';
+    if (districtData[state]) {
+      districtData[state].forEach(d => {
+        const opt = document.createElement("option");
+        opt.value = d.toLowerCase().replace(/\s+/g, '');
+        opt.text = d;
+        districtSelect.appendChild(opt);
+      });
+    }
+  }
+
+  // Basic form submit handler
+  document.querySelectorAll("form").forEach(form => {
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("result").innerHTML = "<strong>Search executed. Displaying results here...</strong>";
+    });
+  });
+</script>
+  
+</body>
+</html>

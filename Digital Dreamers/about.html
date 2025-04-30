@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | Property Nexus Finder</title>
+  <link rel="stylesheet" href="about.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="branding">
+        <h1>Property Nexus Finder</h1>
+        <p>Unified Property Records Search System</p>
+      </div>
+      <nav class="nav">
+        <a href="home.html">Home</a>
+        <a href="#">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <h2 class="title">About Property Nexus Finder</h2>
+
+    <section class="card">
+      <h3>Project Overview</h3>
+      <p>The Property Nexus Finder is a unified search system that allows citizens, legal professionals, financial institutions, and government officials to search and verify property records across multiple government databases through a single interface.</p>
+      <p>It integrates information from several key property registration and encumbrance databases, including:</p>
+      <ul>
+        <li><strong>DORIS</strong>: Urban property registration records</li>
+        <li><strong>DLR</strong>: Rural land records and agricultural property info</li>
+        <li><strong>CERSAI</strong>: Registry of secured interests and encumbrances</li>
+        <li><strong>MCA21</strong>: Corporate assets and properties</li>
+      </ul>
+      <p>This integrated approach eliminates the need to search across multiple platforms.</p>
+    </section>
+
+    <section class="card">
+      <h3>Key Features</h3>
+      <ul class="features">
+        <li><strong>Unified Search Interface:</strong> Standardized form for urban/rural property searches.</li>
+        <li><strong>Multi-User Support:</strong> Designed for buyers, officials, and institutions.</li>
+        <li><strong>Standardized Results:</strong> Unified format for comparison and analysis.</li>
+        <li><strong>Comprehensive Documentation:</strong> View documents, encumbrances, legal notices in one place.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>Technical Implementation</h3>
+      <p>The system is built on a modern technology stack:</p>
+      <div class="tech">
+        <p><strong>Frontend:</strong></p>
+        <ul>
+          <li>React with TypeScript</li>
+          <li>TailwindCSS for responsive design</li>
+          <li>ShadCN UI components</li>
+        </ul>
+        <p><strong>Backend (Simulation):</strong></p>
+        <ul>
+          <li>Mock API interfaces (DORIS, DLR, CERSAI, MCA21)</li>
+          <li>Data transformation and normalization</li>
+        </ul>
+        <p class="note">* In production, it would connect to real APIs, use authentication, and add security.</p>
+      </div>
+    </section>
+
+    <div class="cta">
+      <button onclick="goToSearch()"><a href="search.html">Go to Search Page</a></button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Property Nexus Finder - A Unified Property Records Search System</p>
+    <p>&copy; 2025 Government of India. All Rights Reserved.</p>
+  </footer>
+
+  <script src="web.js"></script>
+</body>
+</html>
